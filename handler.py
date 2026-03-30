@@ -1,12 +1,8 @@
 import runpod
 
-def handler(event):
-    input_data = event["input"]
-
-    # testowy output (na start!)
-    return {
-        "message": "Serverless działa 🚀",
-        "input": input_data
-    }
+def handler(job):
+    job_input = job.get("input", {}) or {}
+    name = job_input.get("name", "world")
+    return {"message": f"Hello, {name}!"}
 
 runpod.serverless.start({"handler": handler})
