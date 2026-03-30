@@ -1,10 +1,10 @@
-FROM python:3.10-slim
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
 
-WORKDIR /
+WORKDIR /app
 
-# Install Runpod SDK
-RUN pip install --no-cache-dir runpod
+COPY . .
 
-# Copy your handler
-COPY handler.py /
-CMD ["python", "-u", "/handler.py"]
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+CMD ["python", "-u", "handler.py"]
