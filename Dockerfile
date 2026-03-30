@@ -1,9 +1,10 @@
-FROM runpod/pytorch:2.0.1-py3.10-cuda11.8.0-devel
+FROM python:3.10-slim
 
-WORKDIR /app
-COPY . .
+WORKDIR /
 
-RUN pip install --upgrade pip
-RUN pip install runpod
+# Install Runpod SDK
+RUN pip install --no-cache-dir runpod
 
-CMD ["python", "handler.py"]
+# Copy your handler
+COPY handler.py /
+CMD ["python", "-u", "/handler.py"]
