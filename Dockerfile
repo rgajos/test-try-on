@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM runpod/base:0.2.0-cuda11.8.0
 
 WORKDIR /app
 COPY . .
